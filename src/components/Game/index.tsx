@@ -1,28 +1,17 @@
+'use client'
 import React from "react";
 
-export default function RpgGame() {
+export default function RPGFrame() {
   return (
-    <div
-      style={{
-        width: "100vw",
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "black",
-        overflow: "hidden",
-      }}
-    >
+    <div style={{ width: "100%", height: "100vh", backgroundColor: "black" }}>
       <iframe
-        src="/rpgjs/index.html" // apunta a tu build en public/rpgjs
+        src="https://rpgserver-production.up.railway.app/"
         style={{
-          width: "816px",
-          height: "624px",
-          maxWidth: "100%",
-          maxHeight: "100%",
+          width: "100%",
+          height: "100%",
           border: "none",
         }}
-        allowFullScreen
+        title="RPG Game"
       />
     </div>
   );
