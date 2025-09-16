@@ -1,17 +1,29 @@
-// components/RPGGame.tsx
-'use client'
+import React from "react";
 
-export default function RPGGame() {
+export default function RpgGame() {
   return (
-    <iframe
-      src="/rpgjs/index.html"
+    <div
       style={{
-        width: '100%',
-        height: '100vh', // ocupa toda la altura del viewport
-        border: 'none',
-        display: 'block',
+        width: "100vw",
+        height: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "black",
+        overflow: "hidden",
       }}
-      title="RPGJS Game"
-    />
-  )
+    >
+      <iframe
+        src="/rpgjs/index.html" // apunta a tu build en public/rpgjs
+        style={{
+          width: "816px",
+          height: "624px",
+          maxWidth: "100%",
+          maxHeight: "100%",
+          border: "none",
+        }}
+        allowFullScreen
+      />
+    </div>
+  );
 }
