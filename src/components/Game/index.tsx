@@ -28,7 +28,7 @@ export default function Game() {
     script.onload = () => {
       if (window.RpgClient) {
         window.RpgClient.start({
-          server: "https://rpgserver-production.up.railway.app/", // tu servidor RPGJS
+          server: "https://rpgserver-production.up.railway.app:8000", // tu servidor RPGJS
           container: "rpg",                           // id del div donde se renderiza
           width: 816,
           height: 624
