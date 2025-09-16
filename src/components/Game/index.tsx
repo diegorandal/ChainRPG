@@ -1,58 +1,46 @@
-'use client';
-import { useEffect } from "react";
+// components/RPGGame.tsx
+'use client'
 
-interface RpgClientType {
-  start: (options: {
-    server: string;
-    container: string;
-    width?: number;
-    height?: number;
-  }) => void;
-}
+import { useEffect } from 'react'
 
-declare global {
-  interface Window {
-    RpgClient: RpgClientType;
-  }
-}
-
-export default function Game() {
+export default function RPGGame() {
   useEffect(() => {
-    // Crear el script dinámicamente
-    const script = document.createElement("script");
-    script.type = "module";
-    script.src = "/rpgjs/assets/main-48e4a6fd.js"; // ruta a tu bundle RPGJS
-    script.crossOrigin = "anonymous";
+    const loadScript = (src: string) => {
+      return new Promise<void>((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = src
+        script.type = 'module'
+        script.onload = () => resolve()
+        script.onerror = () => reject()
+        document.body.appendChild(script)
+      })
+    }
 
-    // Cuando el script cargue, inicializamos el cliente
-    script.onload = () => {
-      if (window.RpgClient) {
-        window.RpgClient.start({
-          server: "https://rpgserver-production.up.railway.app:8000", // tu servidor RPGJS
-          container: "rpg",                           // id del div donde se renderiza
-          width: 816,
-          height: 624
-        });
-      }
-    };
+    const loadCSS = (href: string) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = href
+      document.head.appendChild(link)
+    }
 
-    document.body.appendChild(script);
-
-    // Cleanup: remover script si el componente se desmonta
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
+    // Carga los CSS y JS generados por el build de RPGJS
+    loadCSS('/rpgjs/assets/vendor-2e71e604.css')
+    loadScript('/rpgjs/assets/main-48e4a6fd.js')
+      .then(() => loadScript('/rpgjs/assets/main-48e4a6fd.js'))
+      .catch((err) => console.error('Error cargando RPGJS:', err))
+  }, [])
 
   return (
     <div
       id="rpg"
       style={{
-        width: 816,
-        height: 624,
-        margin: "auto",
-        position: "relative"
+        position: 'relative',
+        width: '100%',
+        height: '100%',
+        maxWidth: '816px',
+        maxHeight: '624px',
+        margin: '0 auto',
       }}
     />
-  );
+  )
 }
