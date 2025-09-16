@@ -1,8 +1,17 @@
 import { useEffect } from "react";
 
+interface RpgClientType {
+  start: (options: {
+    server: string;
+    container: string;
+    width?: number;
+    height?: number;
+  }) => void;
+}
+
 declare global {
   interface Window {
-    RpgClient: any; // declaramos RpgClient en window para TypeScript
+    RpgClient: RpgClientType;
   }
 }
 

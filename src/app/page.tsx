@@ -1,3 +1,4 @@
+import Game from '@/components/Game';
 import { Page } from '@/components/PageLayout';
 //import { AuthButton } from '../components/AuthButton';
 
@@ -5,7 +6,7 @@ export default function Home() {
   return (
     <Page>
       <Page.Main className="flex flex-col items-center justify-center">
-        El peluca sape
+      <Game />
       </Page.Main>
     </Page>
   );
